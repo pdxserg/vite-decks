@@ -9,6 +9,9 @@ export const instance = axios.create({
 export const deckAPI ={
   getDecks(){
     return instance.get<GetDecksResponseType>(`/v2/decks`)
+  },
+  addDeck(name:string){
+    return instance.put(`/v2/decks`, {name})
   }
 
 }
