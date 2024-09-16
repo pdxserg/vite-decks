@@ -7,14 +7,16 @@ import { DeckType } from './decks-api.ts'
 //   //   name: '',
 //   // },
 // }
-const initialState:DeckType[] =[]
+//  type DecksState = typeof initialState
+
+const initialState: DeckType[] = []
 
 
 type DecksActions = ReturnType<typeof setDecksAC>
-export const decksReducer = (state: DeckType[] = initialState, action: DecksActions): DeckType[] => {
+export const decksReducer = (state = initialState, action: DecksActions): DeckType[] => {
   switch (action.type) {
     case 'SET-DECKS':{
-      return action.decks
+      return  action.decks
     }
     default:
       return state
