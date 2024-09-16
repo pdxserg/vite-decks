@@ -5,16 +5,14 @@ import { AppRootState, store, useAppDispatch, useAppSelector } from '../../../ap
 import { setDecksAC } from '../decks-reducer.ts'
 import { useSelector } from 'react-redux'
 import { DeckItem } from './DeckItem/DeckItem.tsx'
+import { setDecksTC } from '../decks-thunks.ts'
 
 export const DecksList = () => {
 const decks =useSelector<AppRootState,DeckType[]>(state => state.decks)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-deckAPI.getDecks()
-  .then(res =>{
-dispatch(setDecksAC(res.data.items))
-  })
+dispatch(setDecksTC())
   }, [])
 
   return <ul className={s.list}>
