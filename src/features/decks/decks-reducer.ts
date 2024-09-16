@@ -1,17 +1,31 @@
-const initialState = {
-  decks: [] as any[], // todo: add type
-  searchParams: {
-    name: '',
-  },
-}
+import { DeckType } from './decks-api.ts'
 
-type DecksState = typeof initialState
+// const initialState = {
+//   // decks: [] as any[], // todo: add type
+//   decks:[]
+//   // searchParams: {
+//   //   name: '',
+//   // },
+// }
+const initialState:DeckType[] =[]
 
-export const decksReducer = (state: DecksState = initialState, action: DecksActions): DecksState => {
+
+type DecksActions = ReturnType<typeof setDecksAC>
+export const decksReducer = (state: DeckType[] = initialState, action: DecksActions): DeckType[] => {
   switch (action.type) {
+    case 'SET-DECKS':{
+      return action.decks
+    }
     default:
       return state
   }
 }
 
-type DecksActions = any
+
+
+export const setDecksAC =(decks: DeckType[])=>{
+  return {
+    type: 'SET-DECKS',
+decks
+  }as const
+}

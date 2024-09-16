@@ -31,13 +31,13 @@ export const deckAPI ={
 //   }
 // }
 // Тип для объекта автора
-interface AuthorType {
+type AuthorType= {
   id: string;
   name: string;
 }
 
 // Тип для объекта колоды
-interface DeckType {
+export type DeckType= {
   id: string;
   userId: string;
   name: string;
@@ -51,7 +51,7 @@ interface DeckType {
 }
 
 // Тип для объекта пагинации
-interface PaginationType {
+type PaginationType= {
   totalItems: number;
   currentPage: number;
   itemsPerPage: number;
@@ -59,7 +59,7 @@ interface PaginationType {
 }
 
 // Тип для полного ответа от API
-interface GetDecksResponseType {
+type GetDecksResponseType ={
   items: DeckType[];
   pagination: PaginationType;
 }
