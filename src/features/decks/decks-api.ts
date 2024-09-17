@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { FormValues } from './AddNewDeckForm/AddNewDeckForm.tsx'
 
 export const instance = axios.create({
   baseURL: 'https://api.flashcards.andrii.es',
@@ -11,28 +12,11 @@ export const deckAPI ={
     return instance.get<GetDecksResponseType>(`/v2/decks`)
   },
   addDeck(name:string){
-    return instance.put(`/v2/decks`, {name})
+    return instance.put<DeckType>(`/v1/decks`, { name }  )
   }
 
 }
 
-
-//TYPES
-// type DeckType={
-//   "id": string
-//   "userId": string
-//   "name": string
-//   "isPrivate": boolean
-//   "cover": string
-//   "created": string
-//   "updated": string
-//   "cardsCount": number
-//   "isFavorite": boolean
-//   "author": {
-//     "id": string
-//     "name": string
-//   }
-// }
 // Тип для объекта автора
 type AuthorType= {
   id: string;
@@ -66,10 +50,3 @@ type GetDecksResponseType ={
   items: DeckType[];
   pagination: PaginationType;
 }
-//
-// // Теперь можно типизировать вызов API
-// export const deckAPI = {
-//   getDecks() {
-//     return instance.get<GetDecksResponseType>(`/v2/decks`);
-//   }
-// }
