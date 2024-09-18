@@ -8,8 +8,8 @@ export const setDecksTC=()=>(dispatch:Dispatch)=>{
       dispatch(setDecksAC(res.data.items))
     })
 }
-export const addDeckTC=(name:string)=>(dispatch:Dispatch)=>{
-  deckAPI.addDeck(name)
+export const addDeckTC=(name:string)=>async (dispatch:Dispatch)=>{
+  return  deckAPI.addDeck(name)
     .then(res =>{
        dispatch(addDeckAC(res.data))
     })

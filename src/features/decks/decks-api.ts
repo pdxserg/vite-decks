@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { FormValues } from './AddNewDeckForm/AddNewDeckForm.tsx'
 
 export const instance = axios.create({
   baseURL: 'https://api.flashcards.andrii.es',
@@ -7,24 +6,24 @@ export const instance = axios.create({
     'x-auth-skip': true,
   },
 })
-export const deckAPI ={
-  getDecks(){
+export const deckAPI = {
+  getDecks() {
     return instance.get<GetDecksResponseType>(`/v2/decks`)
   },
-  addDeck(name:string){
-    return instance.put<DeckType>(`/v1/decks`, { name }  )
-  }
+  addDeck(name: string) {
+    return instance.post<DeckType>(`/v1/decks`, {name})
+  },
 
 }
 
 // Тип для объекта автора
-type AuthorType= {
+type AuthorType = {
   id: string;
   name: string;
 }
 
 // Тип для объекта колоды
-export type DeckType= {
+export type DeckType = {
   id: string;
   userId: string;
   name: string;
@@ -38,7 +37,7 @@ export type DeckType= {
 }
 
 // Тип для объекта пагинации
-type PaginationType= {
+type PaginationType = {
   totalItems: number;
   currentPage: number;
   itemsPerPage: number;
@@ -46,7 +45,7 @@ type PaginationType= {
 }
 
 // Тип для полного ответа от API
-type GetDecksResponseType ={
+type GetDecksResponseType = {
   items: DeckType[];
   pagination: PaginationType;
 }
